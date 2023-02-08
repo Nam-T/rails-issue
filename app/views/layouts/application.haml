@@ -1,0 +1,32 @@
+!!!
+%html.notranslate{ translate: "no", lang: "ja" }
+  %head
+    %meta{name: "google", content: "notranslate"}
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "", :property => "og:title"}/
+    %meta{:content => "", :property => "og:type"}/
+    %meta{:content => "", :property => "og:url"}/
+    %meta{:content => "", :property => "og:image"}/
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %title= content_for(:title) || ""
+    %meta{content: content_for(:description) || "", name: "description"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = render "layouts/preload"
+    = render "layouts/assets_load"
+    = content_for :head
+  %body{ class: "#{content_for :body_class}" }
+    = render "layouts/loading"
+    = render "layouts/google_tag_iframe"
+    - unless @hide_header
+      = render "shared/header"
+    %p.notice=notice
+    %p.alert=alert
+    = yield
+    - unless Rails.env.production?
+      = any_login_here if defined?(AnyLogin)
+  - unless @hide_footer
+    = render "shared/footer"
+-#   = javascript_include_tag "load_font.js", "data-turbolinks-track": "reload", async: true
+  = render "layouts/rollback_to_ref_url"

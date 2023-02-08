@@ -1,0 +1,7 @@
+= content_for :preload
+%link{ href: asset_url("application"), media: "all", "data-turbolinks-track": "reload", rel: :stylesheet}
+-# %script{ src: asset_url("application.js"), "data-turbolinks-track": "reload", defer: true }
+- if has_asset?("#{lookup_context.prefixes.first}/#{convert_action_name(action_name)}")
+  %link{ href: asset_url("#{lookup_context.prefixes.first}/#{convert_action_name(action_name)}"), media: "all", "data-turbolinks-track": "reload", rel: :stylesheet}
+- if has_asset?("#{lookup_context.prefixes.first}/#{convert_action_name(action_name)}.js")
+  %script{ src: asset_url("#{lookup_context.prefixes.first}/#{convert_action_name(action_name)}.js"), "data-turbolinks-track": "reload", defer: true }

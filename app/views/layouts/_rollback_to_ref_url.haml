@@ -1,0 +1,3 @@
+- if respond_to?(:rerender_normal_request_of_form?) && rerender_normal_request_of_form?
+  :javascript
+    window.history.pushState("", "", "#{request.referer}");

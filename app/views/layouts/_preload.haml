@@ -1,0 +1,4 @@
+- if has_asset?("#{lookup_context.prefixes.first}/#{convert_action_name(action_name)}")
+  = preload_link_tag("#{lookup_context.prefixes.first}/#{convert_action_name(action_name)}", as: :style, type: "text/css")
+%link{ rel: "preconnect", href: "https://fonts.googleapis.com" }
+%link{ rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true }
